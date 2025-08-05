@@ -1,6 +1,10 @@
 import pytest
-from httpx import AsyncClient
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 from main import app
+from httpx import AsyncClient
 
 @pytest.mark.asyncio
 async def test_task_lifecycle():
@@ -17,5 +21,6 @@ async def test_task_lifecycle():
         response = await ac.post("/api/v1/equipment/cpe/test01", json=payload)
         assert response.status_code == 200
         task_id = response.json()["taskId"]
+
         status = await ac.get(f"/api/v1/equipment/cpe/test01/task/{task_id}")
         assert status.status_code in (200, 204, 500)
