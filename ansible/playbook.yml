@@ -1,0 +1,30 @@
+---
+- name: Deploy Async Config Service
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - python3
+          - python3-pip
+          - rabbitmq-server
+          - git
+        state: present
+        update_cache: yes
+
+    - name: Clone repo
+      git:
+        repo: <YOUR_REPO_URL>
+        dest: /opt/test_rst
+
+    - name: Install Python requirements
+      pip:
+        requirements: /opt/test_rst/requirements.txt
+        executable: pip3
+
+    - name: Run the app
+      shell: uvicorn main:app --host 0.0.0.0 --port 8000 &
+      args:
+        chdir: /opt/test_rst
+        creates: /tmp/test_rst-running
