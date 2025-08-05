@@ -36,8 +36,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Start app via docker-compose
-        run: docker-compose up -d --build
+      - name: Start app via Docker Compose
+        run: docker compose up -d --build
 
       - name: Wait for app to be ready
         run: sleep 10
