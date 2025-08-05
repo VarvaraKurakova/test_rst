@@ -1,7 +1,7 @@
-fastapi[all]
+fastapi
 uvicorn
 pydantic
 aio-pika
-httpx[http2]
+httpx
 pytest
 pytest-asyncio
