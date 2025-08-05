@@ -15,7 +15,7 @@
 
     - name: Clone repo
       git:
-        repo: <YOUR_REPO_URL>
+        repo:  https://github.com/VarvaraKurakova/test_rst.git
         dest: /opt/test_rst
 
     - name: Install Python requirements
