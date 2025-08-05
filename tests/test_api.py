@@ -8,7 +8,7 @@ from httpx import AsyncClient
 
 @pytest.mark.asyncio
 async def test_task_lifecycle():
-    async with AsyncClient(base_url="http://localhost:8000") as ac:
+    async with AsyncClient(app=app, base_url="http://test") as ac:
         payload = {
             "timeoutInSeconds": 5,
             "parameters": {
